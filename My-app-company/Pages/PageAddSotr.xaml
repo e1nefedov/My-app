@@ -1,0 +1,54 @@
+﻿<Page x:Class="My_app_company.Pages.PageAddSotr"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:My_app_company.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageAddSotr">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Text="ФИО сотрудника*"
+                    Style="{StaticResource mainTblk}"/>
+
+                <TextBox
+                    Name="txtFIO"
+                    Style="{StaticResource mainTbx}"/>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Text="Должность*"
+                    Style="{StaticResource mainTblk}"/>
+                <TextBox
+                    Name="txtDolzh"
+                    Style="{StaticResource mainTbx}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Text="Адрес*"
+                    Style="{StaticResource mainTblk}"/>
+                <TextBox
+                    Name="txtAdres"
+                    Style="{StaticResource mainTbx}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock
+                    Text="Контакт"
+                    Style="{StaticResource mainTblk}"/>
+                <TextBox
+                    Name="txtContact"
+                    Style="{StaticResource mainTbx}"/>
+            </StackPanel>
+            <Button
+                Name="btnSave"
+                Content="Сохранить"
+                Style="{StaticResource mainBtn}" Click="btnSave_Click"/>
+        </StackPanel>
+ 
+    </Grid>
+</Page>

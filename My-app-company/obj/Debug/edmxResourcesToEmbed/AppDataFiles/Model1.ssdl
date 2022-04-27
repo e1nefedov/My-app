@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище companyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="dogovor">
+    <Key>
+      <PropertyRef Name="id_dogovor" />
+    </Key>
+    <Property Name="id_dogovor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_klient" Type="int" />
+    <Property Name="data_nach" Type="date" />
+    <Property Name="age" Type="int" />
+  </EntityType>
+  <EntityType Name="klient">
+    <Key>
+      <PropertyRef Name="id_klient" />
+    </Key>
+    <Property Name="id_klient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="adres" Type="varchar" MaxLength="50" />
+    <Property Name="contact" Type="varchar" MaxLength="50" />
+    <Property Name="e-mail" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sotrudniki">
+    <Key>
+      <PropertyRef Name="id_sotr" />
+    </Key>
+    <Property Name="id_sotr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="dolzh" Type="varchar" MaxLength="50" />
+    <Property Name="adres" Type="varchar" MaxLength="50" />
+    <Property Name="contact" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="uslugi">
+    <Key>
+      <PropertyRef Name="id_uslugi" />
+    </Key>
+    <Property Name="id_uslugi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="price" Type="real" />
+  </EntityType>
+  <EntityType Name="zakaz">
+    <Key>
+      <PropertyRef Name="id_zakaz" />
+    </Key>
+    <Property Name="id_zakaz" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_sotrudnik" Type="int" />
+    <Property Name="id_klient" Type="int" />
+    <Property Name="id_dogovor" Type="int" />
+    <Property Name="id_uslugi" Type="int" />
+  </EntityType>
+  <Association Name="FK_zakaz_dogovor">
+    <End Role="dogovor" Type="Self.dogovor" Multiplicity="0..1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dogovor">
+        <PropertyRef Name="id_dogovor" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="id_dogovor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_zakaz_klient">
+    <End Role="klient" Type="Self.klient" Multiplicity="0..1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="klient">
+        <PropertyRef Name="id_klient" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="id_klient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_zakaz_sotrudniki">
+    <End Role="sotrudniki" Type="Self.sotrudniki" Multiplicity="0..1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sotrudniki">
+        <PropertyRef Name="id_sotr" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="id_sotrudnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_zakaz_uslugi">
+    <End Role="uslugi" Type="Self.uslugi" Multiplicity="0..1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="uslugi">
+        <PropertyRef Name="id_uslugi" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="id_uslugi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище companyModelContainer">
+    <EntitySet Name="dogovor" EntityType="Self.dogovor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="klient" EntityType="Self.klient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sotrudniki" EntityType="Self.sotrudniki" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="uslugi" EntityType="Self.uslugi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="zakaz" EntityType="Self.zakaz" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_zakaz_dogovor" Association="Self.FK_zakaz_dogovor">
+      <End Role="dogovor" EntitySet="dogovor" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_zakaz_klient" Association="Self.FK_zakaz_klient">
+      <End Role="klient" EntitySet="klient" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_zakaz_sotrudniki" Association="Self.FK_zakaz_sotrudniki">
+      <End Role="sotrudniki" EntitySet="sotrudniki" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_zakaz_uslugi" Association="Self.FK_zakaz_uslugi">
+      <End Role="uslugi" EntitySet="uslugi" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

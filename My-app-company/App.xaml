@@ -1,0 +1,45 @@
+﻿<Application x:Class="My_app_company.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:My_app_company"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="grdBtng" TargetType="Button">
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Width" Value="Auto" />
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="Background" Value="#fafaf8" />
+            <Setter Property="BorderBrush" Value="#dadadb" />
+        </Style>
+        <Style x:Key="mainBtn" TargetType="Button">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Background" Value="#3f53b1"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="mainTblk" TargetType="TextBlock">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="mainTbx" TargetType="TextBox">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="#eaeaea"/>
+            <Setter Property="BorderBrush" Value="#eaeaea"/>
+            
+        </Style>
+        <Style x:Key="mainCmbx" TargetType="ComboBox">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="mainDp" TargetType="DatePicker">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="mainRb" TargetType="RadioButton">
+            <Setter Property="Width" Value="110"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Application.Resources>
+</Application>

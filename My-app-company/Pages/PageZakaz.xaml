@@ -1,0 +1,104 @@
+﻿<Page x:Class="My_app_company.Pages.PageZakaz"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:My_app_company.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageZakaz">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Background="#3f53b1" Height="40" Orientation="Horizontal"
+                    VerticalAlignment="Top">
+                <Button
+                Name="btnAdd"
+                Content="+ Добавить новую запись"
+                Width="Auto"
+                Height="20"
+                Background="#3f53b1"
+                Foreground="White"
+                BorderBrush="#3f53b1" Click="btnAdd_Click" 
+                />
+                <Border CornerRadius="10" BorderBrush="White" BorderThickness="4"
+                        Background="White"
+                        Margin="400 0 0 0"
+                        Height="30">
+                    <TextBox Name="txtSearch"
+                             BorderThickness="0"
+                             Background="White"
+                             Height="25"
+                             Width="230"
+                         />
+                </Border>
+            </StackPanel>
+           <StackPanel Orientation="Horizontal" Height="Auto" Background="#eaeaea">
+                <Expander Header="Сортировка" Height="Auto">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton
+                                Name="SortKlient"
+                                Content="По клиентам"
+                                Style="{StaticResource mainRb}"
+                                IsMouseCapturedChanged="SortKlient_IsMouseCapturedChanged"/>
+                            <RadioButton
+                                Name="SortUslugi"
+                                Content="По услугам" 
+                                Style="{StaticResource mainRb}"
+                                IsMouseCapturedChanged="SortUslugi_IsMouseCapturedChanged"/>
+                            <RadioButton
+                                Name="SortSotr"
+                                Content="По сотрудникам"
+                                Style="{StaticResource mainRb}"
+                                IsMouseCapturedChanged="SortSotr_IsMouseCapturedChanged_1"/>
+                        </StackPanel>
+                        <DataGrid Name="grdSortZakaz" IsReadOnly="True" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+
+
+                                <DataGridTextColumn Header="Номер заказа" Binding="{Binding id_zakaz}" Width="Auto" FontFamily="arial" />
+                                <DataGridTextColumn Header="Сотрудник" Binding="{Binding sotrudniki.name}" Width="Auto"/>
+                                <DataGridTextColumn Header="Клиент" Binding="{Binding klient.name}" Width="Auto"/>
+                                <DataGridTextColumn Header="Договор" Binding="{Binding dogovor.id_dogovor}" Width="Auto"/>
+                                <DataGridTextColumn Header="Услуга" Binding="{Binding uslugi.name}" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Expander>
+             </StackPanel>
+            <StackPanel Orientation="Vertical"  Height="450">
+                <DataGrid Name="grdZakaz" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Номер заказа" Binding="{Binding id_zakaz}" Width="*" FontFamily="arial"/>
+                        <DataGridTextColumn Header="Сотрудник" Binding="{Binding sotrudniki.name}" Width="*"/>
+                        <DataGridTextColumn Header="Клиент" Binding="{Binding klient.name}" Width="*"/>
+                        <DataGridTextColumn Header="Договор" Binding="{Binding id_dogovor}" Width="*"/>
+                        <DataGridTextColumn Header="Услуга" Binding="{Binding uslugi.name}" Width="*"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button
+                                            Name="btnEdit"
+                                            Style="{StaticResource grdBtng}"
+                                            Content="Edit"
+                                            Click="btnEdit_Click"
+                                            />
+                                        <Button
+                                            Name="btnDel"
+                                            Style="{StaticResource grdBtng}"
+                                            Content="Del"
+                                            Click="btnDel_Click"
+                                                />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                    
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

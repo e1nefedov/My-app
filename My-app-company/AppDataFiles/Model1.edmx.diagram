@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ac0746d834014c10af9dfaaf8196d17f" Name="Diagram1">
+        <EntityTypeShape EntityType="companyModel.dogovor" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.klient" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.sotrudniki" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.uslugi" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="companyModel.zakaz" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="companyModel.FK_zakaz_dogovor" ManuallyRouted="false" />
+        <AssociationConnector Association="companyModel.FK_zakaz_klient" ManuallyRouted="false" />
+        <AssociationConnector Association="companyModel.FK_zakaz_sotrudniki" ManuallyRouted="false" />
+        <AssociationConnector Association="companyModel.FK_zakaz_uslugi" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="companyModel.sysdiagrams" Width="1.5" PointX="3.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

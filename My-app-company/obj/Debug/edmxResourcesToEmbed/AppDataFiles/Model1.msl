@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище companyModelContainer" CdmEntityContainer="companyEntities">
+    <EntitySetMapping Name="dogovor">
+      <EntityTypeMapping TypeName="companyModel.dogovor">
+        <MappingFragment StoreEntitySet="dogovor">
+          <ScalarProperty Name="id_dogovor" ColumnName="id_dogovor" />
+          <ScalarProperty Name="id_klient" ColumnName="id_klient" />
+          <ScalarProperty Name="data_nach" ColumnName="data_nach" />
+          <ScalarProperty Name="age" ColumnName="age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="klient">
+      <EntityTypeMapping TypeName="companyModel.klient">
+        <MappingFragment StoreEntitySet="klient">
+          <ScalarProperty Name="id_klient" ColumnName="id_klient" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="e_mail" ColumnName="e-mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sotrudniki">
+      <EntityTypeMapping TypeName="companyModel.sotrudniki">
+        <MappingFragment StoreEntitySet="sotrudniki">
+          <ScalarProperty Name="id_sotr" ColumnName="id_sotr" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="dolzh" ColumnName="dolzh" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="uslugi">
+      <EntityTypeMapping TypeName="companyModel.uslugi">
+        <MappingFragment StoreEntitySet="uslugi">
+          <ScalarProperty Name="id_uslugi" ColumnName="id_uslugi" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zakaz">
+      <EntityTypeMapping TypeName="companyModel.zakaz">
+        <MappingFragment StoreEntitySet="zakaz">
+          <ScalarProperty Name="id_zakaz" ColumnName="id_zakaz" />
+          <ScalarProperty Name="id_sotrudnik" ColumnName="id_sotrudnik" />
+          <ScalarProperty Name="id_klient" ColumnName="id_klient" />
+          <ScalarProperty Name="id_dogovor" ColumnName="id_dogovor" />
+          <ScalarProperty Name="id_uslugi" ColumnName="id_uslugi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="companyModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

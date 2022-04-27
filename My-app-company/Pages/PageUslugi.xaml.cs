@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using My_app_company.AppDataFiles;
+using System.Windows.Threading;
+
+namespace My_app_company.Pages
+{
+    /// <summary>
+    /// Логика взаимодействия для PageUslugi.xaml
+    /// </summary>
+    public partial class PageUslugi : Page
+    {
+        public PageUslugi()
+        {
+            InitializeComponent();
+            grdUslugi.ItemsSource = companyEntities.GetContext().uslugi.ToList();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += UpdateData;
+            timer.Start();
+        }
+
+        public void UpdateData(object sender, object e)
+        {
+            var history = companyEntities.GetContext().uslugi.ToList();
+            grdUslugi.ItemsSource = history;
+            grdUslugi.ItemsSource = companyEntities.GetContext().uslugi.Where(x => x.name.StartsWith(txtSearch.Text)).ToList();
+        }
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            FrameObj.MainFrame.Navigate(new AddUslugi());
+        }
+
+        private void btnDel_Click(object sender, RoutedEventArgs e)
+        {
+            var remove = grdUslugi.SelectedItems.Cast<uslugi>().ToList();
+            try
+            {
+                if (MessageBox.Show("Вы уверены что хотите удалить запись?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    companyEntities.GetContext().uslugi.RemoveRange(remove);
+                    companyEntities.GetContext().SaveChanges();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при удалении!", "Уведомление!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+    }
+}

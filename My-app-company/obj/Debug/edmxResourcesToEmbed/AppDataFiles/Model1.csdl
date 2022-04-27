@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="companyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dogovor">
+    <Key>
+      <PropertyRef Name="id_dogovor" />
+    </Key>
+    <Property Name="id_dogovor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_klient" Type="Int32" />
+    <Property Name="data_nach" Type="DateTime" Precision="0" />
+    <Property Name="age" Type="Int32" />
+    <NavigationProperty Name="zakaz" Relationship="Self.FK_zakaz_dogovor" FromRole="dogovor" ToRole="zakaz" />
+  </EntityType>
+  <EntityType Name="klient">
+    <Key>
+      <PropertyRef Name="id_klient" />
+    </Key>
+    <Property Name="id_klient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="e_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="zakaz" Relationship="Self.FK_zakaz_klient" FromRole="klient" ToRole="zakaz" />
+  </EntityType>
+  <EntityType Name="sotrudniki">
+    <Key>
+      <PropertyRef Name="id_sotr" />
+    </Key>
+    <Property Name="id_sotr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dolzh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="zakaz" Relationship="Self.FK_zakaz_sotrudniki" FromRole="sotrudniki" ToRole="zakaz" />
+  </EntityType>
+  <EntityType Name="uslugi">
+    <Key>
+      <PropertyRef Name="id_uslugi" />
+    </Key>
+    <Property Name="id_uslugi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Single" />
+    <NavigationProperty Name="zakaz" Relationship="Self.FK_zakaz_uslugi" FromRole="uslugi" ToRole="zakaz" />
+  </EntityType>
+  <EntityType Name="zakaz">
+    <Key>
+      <PropertyRef Name="id_zakaz" />
+    </Key>
+    <Property Name="id_zakaz" Type="Int32" Nullable="false" />
+    <Property Name="id_sotrudnik" Type="Int32" />
+    <Property Name="id_klient" Type="Int32" />
+    <Property Name="id_dogovor" Type="Int32" />
+    <Property Name="id_uslugi" Type="Int32" />
+    <NavigationProperty Name="dogovor" Relationship="Self.FK_zakaz_dogovor" FromRole="zakaz" ToRole="dogovor" />
+    <NavigationProperty Name="klient" Relationship="Self.FK_zakaz_klient" FromRole="zakaz" ToRole="klient" />
+    <NavigationProperty Name="sotrudniki" Relationship="Self.FK_zakaz_sotrudniki" FromRole="zakaz" ToRole="sotrudniki" />
+    <NavigationProperty Name="uslugi" Relationship="Self.FK_zakaz_uslugi" FromRole="zakaz" ToRole="uslugi" />
+  </EntityType>
+  <Association Name="FK_zakaz_dogovor">
+    <End Role="dogovor" Type="Self.dogovor" Multiplicity="0..1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dogovor">
+        <PropertyRef Name="id_dogovor" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="id_dogovor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_zakaz_klient">
+    <End Role="klient" Type="Self.klient" Multiplicity="0..1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="klient">
+        <PropertyRef Name="id_klient" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="id_klient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_zakaz_sotrudniki">
+    <End Role="sotrudniki" Type="Self.sotrudniki" Multiplicity="0..1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sotrudniki">
+        <PropertyRef Name="id_sotr" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="id_sotrudnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_zakaz_uslugi">
+    <End Role="uslugi" Type="Self.uslugi" Multiplicity="0..1" />
+    <End Role="zakaz" Type="Self.zakaz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="uslugi">
+        <PropertyRef Name="id_uslugi" />
+      </Principal>
+      <Dependent Role="zakaz">
+        <PropertyRef Name="id_uslugi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="companyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dogovor" EntityType="Self.dogovor" />
+    <EntitySet Name="klient" EntityType="Self.klient" />
+    <EntitySet Name="sotrudniki" EntityType="Self.sotrudniki" />
+    <EntitySet Name="uslugi" EntityType="Self.uslugi" />
+    <EntitySet Name="zakaz" EntityType="Self.zakaz" />
+    <AssociationSet Name="FK_zakaz_dogovor" Association="Self.FK_zakaz_dogovor">
+      <End Role="dogovor" EntitySet="dogovor" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_zakaz_klient" Association="Self.FK_zakaz_klient">
+      <End Role="klient" EntitySet="klient" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_zakaz_sotrudniki" Association="Self.FK_zakaz_sotrudniki">
+      <End Role="sotrudniki" EntitySet="sotrudniki" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <AssociationSet Name="FK_zakaz_uslugi" Association="Self.FK_zakaz_uslugi">
+      <End Role="uslugi" EntitySet="uslugi" />
+      <End Role="zakaz" EntitySet="zakaz" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="companyModel.sysdiagrams" />
+  </EntityContainer>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>
